@@ -12,6 +12,18 @@ export default {
     state.storeChuck.chosenCategory = category;
   },
 
+  //TRIVIA
+
+
+  getTriviaCategories(state, categories) {
+    state.storeTrivia.categories = categories;
+  },
+  setTriviaCategory(state, category) {
+    state.storeTrivia.chosenCategory = category;
+  },
+  getQuestions(state, questions) {
+    state.storeTrivia.questions = questions;
+  }
 
 
 
