@@ -1,8 +1,11 @@
 
 class ChuckService {
   constructor(){
-    const Chuck = require('chucknorris-io');
-    this.client = new Chuck();
+    //since in the baseurl we use baseURL: "https://opentdb.com/", which is for the trivia project, for the chuck project we had to use a separate baseURL, and in order to do this succesfully, beside the trivia project, we had to do this in this class constructor.
+    
+    const Chuck = require('chucknorris-io');//here we set up the base url for the chuck project
+
+    this.client = new Chuck();//yes, here we have in one step created a client property for this class, and we also gave this property an object.
   }
 
   async getRandomJoke(category){

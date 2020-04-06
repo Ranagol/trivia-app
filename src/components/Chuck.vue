@@ -8,11 +8,14 @@
       {{randomJoke.value}}
     </div>
 
-    <!--button + category. First, we need to get all categories, and that is triggered with the beforeRouteEnter. These categories are turned into a dropdown menu. We can select here a category from this dropdown, and we can request a new joke, with that category. My usual Vue/select tricks won't work, because (for now) it is impossible to combine v-model and a getter.-->
+    <!--button + category. First, we need to get all categories, and that is triggered with the beforeRouteEnter. These categories are turned into a dropdown menu (a tags with v-for). We can select here a category from this dropdown with @click="setCategory(category)".
+    My usual Vue/select tricks won't work, because (for now) it is impossible to combine v-model and a getter. The dropdown menu will not work without the 3 Bootstrap additional js link, that goes in the bottom of the page, in index.html. The dropdown menu is usually a button + <a></a> tag.
+    The chosenCategory was set up by us to have a default value (dev) in the central store, and this can be changed with the categories.
+     -->
 
     <div class="btn-group">
-      <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{chosenCategory}}</button>
-      <div class="dropdown-menu">
+      <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{chosenCategory}}</button><!--This is the button part of the dropdown menu.  -->
+      <div class="dropdown-menu"><!--Below we have the a tag part of the dropdown menu. -->
         <a  
           v-for="category in categories" 
           :key="category" 
@@ -23,7 +26,7 @@
     </div>
     
     <button type="button" class="btn btn-success" @click="getRandomJoke(chosenCategory)">New Joke</button>
-
+    <!--The chosenCategory argument is coming from mapGetters, and it was set up by the  @click="setCategory(category)", which activated a mapActions function. -->
   </div>
 </template>
 
@@ -46,10 +49,3 @@ export default {
 }
 </script>
 
-<style scoped>
-/*
-.inline {
-  display: inline;
-}
-*/
-</style>
