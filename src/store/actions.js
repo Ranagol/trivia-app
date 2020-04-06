@@ -16,19 +16,19 @@ export default {
   setCategory({commit}, category) {
     commit('setCategory', category);
   },
-  //TRIVIA
+  //TRIVIA************************************************
 
-  async getTriviaCategories({commit}) {
+  async getTriviaCategories({commit}) {//getting categories from api
     const response = await triviaService.getCategories();
     commit('getTriviaCategories', response.trivia_categories);
   },
   async setTriviaCategory({commit}, category) {
-    const response = await triviaService.getQuestionsByCategory(category.id);
-    commit('getQuestions', response.results);
-    commit('setTriviaCategory', category);
+    const response = await triviaService.getQuestionsByCategory(category.id);//requesting questions BY category.
+    commit('getQuestions', response.results); //The received questions (from a given category) are handled and forwarded just like those questions without category.
+    commit('setTriviaCategory', category);//... and here we also set up the category too. 
   },
   async getQuestions({commit}) {
-    const response  = await triviaService.getQuestions();
+    const response  = await triviaService.getQuestions();//requesting questions WITHOUT category
     commit('getQuestions', response.results);
   }
 
